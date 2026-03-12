@@ -63,9 +63,9 @@ import { useData, useRoute } from 'vitepress'
 // 统一配置区
 const config = {
   authorName: 'YeziMoan',
-  authorUrl: 'https://game.yezimoan.xyz:31045/',
+  authorUrl: 'https://mwiki.gldhn.top/',
   siteName: 'One Blog',
-  siteUrl: 'https://game.yezimoan.xyz:31045/',
+  siteUrl: 'https://mwiki.gldhn.top/',
   licenseName: 'CC BY-NC-SA 4.0',
   licenseUrl: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh'
 }

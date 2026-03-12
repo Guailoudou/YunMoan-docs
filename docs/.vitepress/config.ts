@@ -375,7 +375,7 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://game.yezimoan.xyz",
+    hostname: "https://mwiki.gldhn.top",
     // transformItems: items => {
     //   const permalinkItemBak: typeof items = [];
     //   // 使用永久链接生成 sitemap
