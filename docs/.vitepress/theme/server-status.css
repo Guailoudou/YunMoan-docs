@@ -1,0 +1,389 @@
+.server-status-container {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+}
+
+/* 白天模式样式 */
+:root {
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-border: 2px solid rgba(102, 126, 234, 0.2);
+    --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --header-border: 2px solid rgba(102, 126, 234, 0.2);
+    --section-bg: rgba(255, 255, 255, 0.7);
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+    --border-light: rgba(102, 126, 234, 0.1);
+    --progress-bg: #e2e8f0;
+}
+
+/* 黑夜模式样式 */
+.dark {
+    --card-bg: rgba(30, 41, 59, 0.95);
+    --card-border: 2px solid rgba(102, 126, 234, 0.3);
+    --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --header-border: 2px solid rgba(102, 126, 234, 0.3);
+    --section-bg: rgba(30, 41, 59, 0.7);
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #a0aec0;
+    --primary-gradient: linear-gradient(135deg, #818cf8, #a78bfa);
+    --border-light: rgba(102, 126, 234, 0.2);
+    --progress-bg: #4a5568;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    opacity: 0.8;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: var(--header-border);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.server-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.server-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.server-uuid {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--border-light);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+}
+
+.total-mem {
+    font-size: 1.1rem;
+    color: #667eea;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: var(--border-light);
+    border-radius: 6px;
+}
+
+.dark .total-mem {
+    color: #818cf8;
+}
+
+/* 内存使用率行 */
+.memory-row {
+    margin-bottom: 25px;
+    background: var(--section-bg);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.memory-row:hover {
+    transform: translateX(5px);
+    border-left-color: #2980b9;
+}
+
+.memory-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.memory-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.memory-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.memory-progress {
+    height: 14px;
+    background: var(--progress-bg);
+    border-radius: 7px;
+    overflow: hidden;
+    margin-top: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.memory-progress-bar {
+    height: 100%;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transition: width 0.8s ease;
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+}
+
+/* CPU使用率行 */
+.cpu-row {
+    margin-bottom: 25px;
+    background: var(--section-bg);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #2ecc71;
+    transition: all 0.3s ease;
+}
+
+.cpu-row:hover {
+    transform: translateX(5px);
+    border-left-color: #27ae60;
+}
+
+.cpu-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cpu-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.cpu-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.cpu-progress {
+    height: 14px;
+    background: var(--progress-bg);
+    border-radius: 7px;
+    overflow: hidden;
+    margin-top: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cpu-progress-bar {
+    height: 100%;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    transition: width 0.8s ease;
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+}
+
+/* 实例统计 */
+.instances {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 25px;
+    border-top: var(--header-border);
+}
+
+.instance-count {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.instance-count:hover {
+    transform: scale(1.05);
+}
+
+.count-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.count-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.running {
+    color: #27ae60;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.total {
+    color: #3498db;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .running {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark .total {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 2px dashed rgba(102, 126, 234, 0.4);
+    box-shadow: var(--card-shadow);
+}
+
+.spinner {
+    border: 5px solid rgba(102, 126, 234, 0.3);
+    border-radius: 50%;
+    border-top: 5px solid #667eea;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 25px;
+}
+
+.dark .spinner {
+    border-top-color: #818cf8;
+}
+
+/* 维护消息 */
+.maintenance-message {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 3px solid #e74c3c;
+    color: #e74c3c;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
+}
+
+.refresh-btn {
+    display: block;
+    margin: 25px auto 0;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .card {
+        padding: 20px 15px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .server-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .server-name {
+        font-size: 1.3rem;
+    }
+    
+    .count-value {
+        font-size: 1.8rem;
+    }
+    
+    .memory-value,
+    .cpu-value {
+        font-size: 1.2rem;
+    }
+    
+    .memory-row,
+    .cpu-row {
+        padding: 12px;
+    }
+}
